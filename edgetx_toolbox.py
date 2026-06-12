@@ -182,8 +182,18 @@ class EdgeTXToolbox(tk.Tk):
         hdr.pack_propagate(False)
         tk.Label(hdr, text="  EdgeTX Toolbox", font=("Segoe UI", 14, "bold"),
                  bg=NAV_BG, fg=NAV_FG).pack(side=tk.LEFT, padx=8)
+
+        gh_link = tk.Label(hdr, text="github.com/Onewaytohell/EdgeTx-Toolbox",
+                 font=("Segoe UI", 9, "underline"),
+                 bg=NAV_BG, fg="#7aa7d0", cursor="hand2")
+        gh_link.pack(side=tk.RIGHT, padx=16)
+        gh_link.bind("<Button-1>", lambda e: __import__("webbrowser").open(
+            "https://github.com/Onewaytohell/EdgeTx-Toolbox"))
+        gh_link.bind("<Enter>", lambda e: gh_link.config(fg="white"))
+        gh_link.bind("<Leave>", lambda e: gh_link.config(fg="#7aa7d0"))
+
         tk.Label(hdr, text="v1.0", font=("Segoe UI", 9),
-                 bg=NAV_BG, fg="#7aa7d0").pack(side=tk.RIGHT, padx=16)
+                 bg=NAV_BG, fg="#7aa7d0").pack(side=tk.RIGHT, padx=4)
 
         self.nav = tk.Frame(self, bg=NAV_BG, width=180)
         self.nav.pack(side=tk.LEFT, fill=tk.Y)
@@ -1655,9 +1665,8 @@ class EdgeTXToolbox(tk.Tk):
         self.cmp_dt.config(state="disabled")
 
     def _cmp_set_tab(self, name, count):
-        dot = "🔴" if count else "🟢"
         cnt = f" ({count})" if count else ""
-        self.cmp_nb.tab(self.cmp_tidx[name], text=f"  {name} {dot}{cnt}  ")
+        self.cmp_nb.tab(self.cmp_tidx[name], text=f"  {name}{cnt}  ")
 
     def _cmp_p_overview(self,c):
         lines = ["── GENERAL ─────────────────────────────────"]
